@@ -422,7 +422,7 @@ while Runforever:
         try:
             """Start the bot."""
             # Create the Updater and pass it your bot's token.
-            updater = Updater(token=my_secret,use_context=True,workers=32)
+            updater = Updater(token=my_secret,use_context=True,workers=8)
             mytelegram=TelegramBOT()
             
             # Get the dispatcher to register handlers
