@@ -37,7 +37,7 @@ from PIL import Image
 import numpy
 
 
-my_secret = '5972974320:AAHrfhzQOVhhDpEDM4q87DY7b91LkFJ33Ig'
+my_secret = '5972974320:AAGOQbzgyDsf6Fib3G0sp-g-gljWSLOhprU'
 Date=datetime.datetime.now()
 loop = asyncio.get_event_loop()
 
