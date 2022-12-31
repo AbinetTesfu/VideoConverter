@@ -21,6 +21,5 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-        run: python .github/workflows/app.py
-          echo Add other actions to build,
-          echo test, and deploy your project.
+        run: python .github/workflows/converter.py
+          
