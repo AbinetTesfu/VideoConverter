@@ -12,11 +12,10 @@ import shutil
 
 from threading import Thread
 from tempfile import NamedTemporaryFile
-from telegram.ext.updater import Updater  
-from telegram.update import Update  
+#from telegram.ext.updater import Updater  
+#from telegram.update import Update  
 from telegram import Update, Chat, ChatMember, ParseMode, ChatMemberUpdated, InlineKeyboardButton, InlineKeyboardMarkup,InputMediaAudio
 from telegram.ext import (
-    run_async,
     Updater,
     Filters,
     CommandHandler,
@@ -37,11 +36,11 @@ from PIL import Image
 import numpy
 
 
-my_secret = '5972974320:AAGOQbzgyDsf6Fib3G0sp-g-gljWSLOhprU'
+my_secret = '5972974320:AAHc6Qs9haTluZk1QvK3TUUHI_nRSUMeOIU'
 Date=datetime.datetime.now()
 loop = asyncio.get_event_loop()
-RunForever=[True]
-
+NameError=[False]
+Runforever=[True]
 class TelegramBOT():
     def __init__(self) -> None:
         self.SentMessages ={}
@@ -86,14 +85,12 @@ class TelegramBOT():
         self.search(update,context)      
     
     def end(self,update: Update, context: CallbackContext) -> int:
-        RunForever.clear()
-        RunForever.append(False)        
+        Runforever.clear() 
+        Runforever.append(False)       
         update.message.delete(timeout=10000)
-        update.effective_chat.send_message("Bot Stopped!",
-        parse_mode=ParseMode.HTML,
-        )
+    
     def cancel(self,update: Update, context: CallbackContext) -> int:
-                          
+        #print(update.message.from_user.id )                  
         update.effective_chat.send_message("Canceled!",
         parse_mode=ParseMode.HTML,
         )
@@ -358,7 +355,7 @@ class TelegramBOT():
                 else:
                     break    
                     
-            asyncio.wait(self.WriteMusicDetails(Api_ID,MyMusics))
+            self.WriteMusicDetails(Api_ID,MyMusics)
             return True 
         except Exception as e:
             #print("this"+e)
@@ -394,7 +391,7 @@ class TelegramBOT():
 
 
 
-while RunForever[0]==True:
+while Runforever[0]==True:
     logging.basicConfig(
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
     )
