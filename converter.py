@@ -40,7 +40,7 @@ import numpy
 my_secret = '5972974320:AAGOQbzgyDsf6Fib3G0sp-g-gljWSLOhprU'
 Date=datetime.datetime.now()
 loop = asyncio.get_event_loop()
-
+RunForever=[True]
 
 class TelegramBOT():
     def __init__(self) -> None:
@@ -86,11 +86,14 @@ class TelegramBOT():
         self.search(update,context)      
     
     def end(self,update: Update, context: CallbackContext) -> int:
-                
+        RunForever.clear()
+        RunForever.append(False)        
         update.message.delete(timeout=10000)
-    
+        update.effective_chat.send_message("Bot Stopped!",
+        parse_mode=ParseMode.HTML,
+        )
     def cancel(self,update: Update, context: CallbackContext) -> int:
-        #print(update.message.from_user.id )                  
+                          
         update.effective_chat.send_message("Canceled!",
         parse_mode=ParseMode.HTML,
         )
@@ -389,9 +392,9 @@ class TelegramBOT():
 
 
 
-Runforever=True
 
-while Runforever:
+
+while RunForever[0]==True:
     logging.basicConfig(
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
     )
@@ -429,7 +432,7 @@ while Runforever:
             dispatcher = updater.dispatcher
             dispatcher.add_handler(CommandHandler("start",  mytelegram.start,run_async=True))
             dispatcher.add_handler(CommandHandler("restart", mytelegram.restart,run_async=True))
-            dispatcher.add_handler(CommandHandler('stop', mytelegram.end,run_async=True))
+            dispatcher.add_handler(CommandHandler('mystop', mytelegram.end,run_async=True))
             dispatcher.add_handler(CommandHandler("about", mytelegram.about,run_async=True))
             dispatcher.add_handler(CommandHandler('cancel', mytelegram.cancel,run_async=True))
             dispatcher.add_handler(CommandHandler("search", mytelegram.search,run_async=True))
